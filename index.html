@@ -1,43 +1,201 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دفتر التاجر</title>
 <style>
-body{font-family:Arial;background:#1e40af;margin:0;color:#333}
-.app{background:white;min-height:100vh;max-width:400px;margin:0 auto}
-.header{background:#3b82f6;color:white;padding:20px;text-align:center}
-.nav{display:flex;background:#f8f9fa}
-.nav-btn{flex:1;padding:15px 10px;text-align:center;cursor:pointer;border:none;background:white}
-.nav-btn.active{background:#3b82f6;color:white}
-.content{padding:20px}
-.customer{background:white;border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:8px}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.header {
+  background: #3b82f6;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+.header p {
+  margin: 5px 0 0 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+.content {
+  padding: 25px;
+}
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.stat {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #e9ecef;
+}
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+}
+.stat-value {
+  font-size: 20px;
+  font-weight: bold;
+}
+.pending { color: #f59e0b; }
+.success { color: #10b981; }
+.customer {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 15px;
+}
+.customer-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+.customer-phone {
+  font-size: 14px;
+  color: #666;
+  direction: ltr;
+  text-align: right;
+  margin-bottom: 8px;
+}
+.customer-amount {
+  color: #f59e0b;
+  font-weight: bold;
+  font-size: 15px;
+}
+.actions {
+  margin-top: 25px;
+}
+.btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: #10b981;
+  color: white;
+}
+.btn-primary:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: #3b82f6;
+  color: white;
+}
+.btn-secondary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+.demo-note {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 25px;
+  line-height: 1.5;
+}
+.demo-note strong {
+  color: #1e40af;
+  font-size: 18px;
+}
 </style>
 </head>
 <body>
-<div class="app">
-<div class="header">
-<h1>📱 دفتر التاجر</h1>
-<p>نموذج تجريبي</p>
+<div class="container">
+  <div class="header">
+    <h1>📱 دفتر التاجر</h1>
+    <p>نموذج تجريبي — حل مشكلة الديون</p>
+  </div>
+  
+  <div class="content">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">المعلق</div>
+        <div class="stat-value pending">340 ₪</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">محصل اليوم</div>
+        <div class="stat-value success">1,250 ₪</div>
+      </div>
+    </div>
+    
+    <div class="customer">
+      <div class="customer-name">محمد أبو شريف</div>
+      <div class="customer-phone">0599-123-456</div>
+      <div class="customer-amount">85 شيكل • متأخر 5 أيام</div>
+    </div>
+    
+    <div class="customer">
+      <div class="customer-name">سامي العامودي</div>
+      <div class="customer-phone">0598-887-220</div>
+      <div class="customer-amount">45 شيكل • معلق</div>
+    </div>
+    
+    <div class="customer">
+      <div class="customer-name">فادي حمدان</div>
+      <div class="customer-phone">0597-554-901</div>
+      <div class="customer-amount">120 شيكل • معلق</div>
+    </div>
+    
+    <div class="actions">
+      <button class="btn btn-primary" onclick="sendReminder()">📲 إرسال تذكير</button>
+      <button class="btn btn-secondary" onclick="addCustomer()">➕ إضافة زبون جديد</button>
+    </div>
+    
+    <div class="demo-note">
+      <strong>🎯 هل هذا الحل مفيد لمحلك؟</strong><br>
+      هل تدفع 15 شيكل شهرياً له؟<br>
+      <small>📱 يعمل أوف لاين في انقطاع النت</small>
+    </div>
+  </div>
 </div>
-<div class="nav">
-<button class="nav-btn active">🏠 الرئيسية</button>
-<button class="nav-btn">➕ إضافة</button>
-<button class="nav-btn">📱 رسالة</button>
-</div>
-<div class="content">
-<div class="customer">
-<strong>محمد أبو شريف</strong><br>
-0599-123-456<br>
-<span style="color:#f59e0b">85 شيكل معلق</span>
-</div>
-<div class="customer">
-<strong>سامي العامودي</strong><br>
-0598-887-220<br>
-<span style="color:#f59e0b">45 شيكل معلق</span>
-</div>
-</div>
-</div>
+
+<script>
+function sendReminder() {
+  alert('📲 تم إرسال تذكير!\n\n"السلام عليكم أبو أحمد،\nلديك مبلغ 85 شيكل مستحق لمحل أبو محمد.\nللدفع حوّل عبر: 0599-XXX-XXX"');
+}
+
+function addCustomer() {
+  var name = prompt('اسم الزبون:');
+  var phone = prompt('رقم الجوال:');
+  var amount = prompt('المبلغ (شيكل):');
+  
+  if (name && phone && amount) {
+    alert('✅ تم إضافة:\n' + name + '\n' + phone + '\n' + amount + ' شيكل');
+  }
+}
+</script>
 </body>
 </html>
